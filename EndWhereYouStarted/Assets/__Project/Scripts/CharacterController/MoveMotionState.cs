@@ -9,6 +9,7 @@ public class MoveMotionState : MotionState
     {
         base.Enter();
         _sm._canJump = true;
+        Player.Instance._anim.Play("run");
     }
 
     public override void Update()

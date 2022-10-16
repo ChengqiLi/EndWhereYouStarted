@@ -1,6 +1,4 @@
 
-using UnityEngine;
-
 public class IdleMotionState : MotionState
 {
     public IdleMotionState(MotionStateMachine sm) : base(sm)
@@ -11,6 +9,7 @@ public class IdleMotionState : MotionState
     {
         base.Enter();
         _sm._canJump = true;
+        Player.Instance._anim.Play("idle");
     }
 
     public override void Update()

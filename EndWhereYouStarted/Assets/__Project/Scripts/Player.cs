@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D _rb;
     private BoxCollider2D _collider;
+    [NonSerialized] public Animator _anim;
 
     private MotionStateMachine _sm;
     private PlayerWeapon _weapon;
@@ -82,6 +84,7 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _rb.gravityScale = Gravity;
         _collider = GetComponent<BoxCollider2D>();
+        _anim = GetComponentInChildren<Animator>();
 
         _sm = new MotionStateMachine();
         _weapon = new PlayerWeapon();

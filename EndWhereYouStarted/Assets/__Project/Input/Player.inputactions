@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Exchange",
+                    "type": "Button",
+                    "id": "4f80c5a4-8c3f-4902-a7ac-0ccf2cd0da25",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Item1",
                     "type": "Button",
                     "id": "e0cc9e5f-de01-4e8b-90a8-3c5b6b6c3b61",
@@ -405,6 +414,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13a9177a-e071-4aee-b604-27442cf177e4",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exchange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

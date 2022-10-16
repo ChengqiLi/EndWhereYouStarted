@@ -1,6 +1,10 @@
 
+using UnityEngine;
+
 public class AeroMotionState : MotionState
 {
+    private static readonly int AeroBlend = Animator.StringToHash("aeroBlend");
+
     public AeroMotionState(MotionStateMachine sm) : base(sm)
     {
     }
@@ -9,6 +13,7 @@ public class AeroMotionState : MotionState
     {
         base.Enter();
         _sm._canJump = false;
+        Player.Instance._anim.Play("aero");
     }
 
     public override void Update()
@@ -17,6 +22,8 @@ public class AeroMotionState : MotionState
 
         Player.Instance.Orient = InputManager.XInput;
         Player.Instance.SetVelocityX(InputManager.XInput * Player.MoveSpeed, Player.AeroSmoothTime);
+        float blend = (Mathf.Sign(Player.Instance.Velocity.y) + 1) / 2;
+        Player.Instance._anim.SetFloat(AeroBlend, blend);
     }
 
     public override void FixedUpdate()

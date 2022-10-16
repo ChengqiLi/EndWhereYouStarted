@@ -1,10 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class DamagedMotionState : MotionState
 {
     public DamagedMotionState(MotionStateMachine sm) : base(sm)
     {
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        Player.Instance._anim.Play("hit");
     }
 }

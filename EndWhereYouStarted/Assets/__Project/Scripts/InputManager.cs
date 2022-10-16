@@ -26,6 +26,8 @@ public class InputManager : MonoBehaviour
         _playerInput.actions.FindAction("Jump").canceled += CancelJump;
         _playerInput.actions.FindAction("Fire").performed += PerformFire;
         _playerInput.actions.FindAction("Fire").canceled += CancelFire;
+        _playerInput.actions.FindAction("Exchange").performed += PerformExchange;
+        _playerInput.actions.FindAction("Exchange").canceled += CancelExchange;
         _playerInput.actions.FindAction("Item1").performed += LogName;
         _playerInput.actions.FindAction("Item2").performed += LogName;
         _playerInput.actions.FindAction("Item3").performed += LogName;
@@ -76,10 +78,14 @@ public class InputManager : MonoBehaviour
     public static bool HoldingFire => _holdingFire;
     public static Vector2 MousePos => CameraManager.Instance._camera.ScreenToWorldPoint(_screenPos);
 
-    public void PerformFire(InputAction.CallbackContext context) => _holdingFire = true;
-    public void CancelFire(InputAction.CallbackContext context) => _holdingFire = false;
+    private void PerformFire(InputAction.CallbackContext context) => _holdingFire = true;
+    private void CancelFire(InputAction.CallbackContext context) => _holdingFire = false;
 
     private void MousePosition(InputAction.CallbackContext context) => _screenPos = context.ReadValue<Vector2>();
+
+    public static bool _holdingExchange;
+    private void PerformExchange(InputAction.CallbackContext context) => _holdingExchange = true;
+    private void CancelExchange(InputAction.CallbackContext context) => _holdingExchange = false;
 
     private void QuitApplication(InputAction.CallbackContext context)
     {
