@@ -34,7 +34,7 @@ public class PlayerWeapon
 
         GameObject bombGameObject = GameObject.Instantiate(Player.Instance.ProjectilePrefab, Player.Instance.FirePoint.position, Quaternion.identity);
         _capture = bombGameObject;
-        bombGameObject.GetComponent<Rigidbody2D>().velocity = direction * intensity * TossSpeed + Player.Instance.Velocity;
+        bombGameObject.GetComponent<Rigidbody2D>().velocity = direction * intensity * TossSpeed;
         bombGameObject.GetComponent<Bomb>().ExplosionEvent += Explosion;
     }
 
