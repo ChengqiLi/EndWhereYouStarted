@@ -36,13 +36,13 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-Platformer/.idea/
-Platformer/.vsconfig
-Platformer/Logs/
+EndWhereYouStarted/.idea/
+EndWhereYouStarted/.vsconfig
+EndWhereYouStarted/Logs/
 
-Platformer/Assets/FMODStudioCache.asset
-Platformer/Assets/FMODStudioCache.asset.meta
-Platformer/fmod.log
-Platformer/fmod_editor.log
-Platformer/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
-Platformer/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
+EndWhereYouStarted/Assets/FMODStudioCache.asset
+EndWhereYouStarted/Assets/FMODStudioCache.asset.meta
+EndWhereYouStarted/fmod.log
+EndWhereYouStarted/fmod_editor.log
+EndWhereYouStarted/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+EndWhereYouStarted/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
