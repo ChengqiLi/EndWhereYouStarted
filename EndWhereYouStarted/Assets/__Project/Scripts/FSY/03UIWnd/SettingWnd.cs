@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SettingWnd : WindowRoot
 {
-    public static SettingWnd Instance;
     public Slider bgSlider;
     public Slider uiSlider;
     public AudioSource bgAudio;
@@ -13,7 +12,7 @@ public class SettingWnd : WindowRoot
     public GameObject root;
 
     public Button closeBtn;
-    void Start()
+    void Awake()
     {
         bgAudio.volume = 0.3f;
         bgSlider.value = bgAudio.volume;
@@ -25,22 +24,10 @@ public class SettingWnd : WindowRoot
         bgSlider.onValueChanged.AddListener(ChangeBGVolume);
         uiSlider.onValueChanged.AddListener(ChangeUIVolume);
 
-
-    }
-    public void Awake()
-    {
-  
-        if (Instance != this&&Instance!=null)
+        closeBtn.onClick.AddListener(() =>
         {
-            //避免被切换场景时产生新的物体把Instance刷掉
-        }
-        if(Instance==null)
-        {
-            Instance = this;
-        }
-
-
-
+            SetWndState(false);
+        });
     }
     
    

@@ -13,7 +13,7 @@ public class GameRoot : MonoBehaviour {
     public SettingWnd settingWnd;
     public StartWnd startWnd;
     public MenuWnd menuWnd;
-
+    public MainUI mainUI;
     void Awake() {
         Instance = this;
         InitRoot();
@@ -23,22 +23,27 @@ public class GameRoot : MonoBehaviour {
     }
     public void Start()
     {
-        audioSvc.PlayBGMusic("battle");
-        audioSvc.PlayUIAudio("battle");
+        audioSvc.PlayBGMusic("InfiniteDoors");
 
         startWnd.SetWndState(true);
-
+        mainUI.SetWndState(true);
     }
     void Update() {
        
     }
 
     void InitRoot() {
-        //for(int i = 0; i < uiRoot.childCount; i++)//取消激活Canvas所有的子物体
-        //{
-        //    Transform trans = uiRoot.GetChild(i);
-        //    trans.gameObject.SetActive(false);
-        //}
+        //先激活再取消激活
+        for (int i = 0; i < uiRoot.childCount; i++)//激活Canvas所有的子物体
+        {
+            Transform trans = uiRoot.GetChild(i);
+            trans.gameObject.SetActive(true);
+        }
+        for (int i = 0; i < uiRoot.childCount; i++)//取消激活Canvas所有的子物体
+        {
+            Transform trans = uiRoot.GetChild(i);
+            trans.gameObject.SetActive(false);
+        }
 
     }
 
