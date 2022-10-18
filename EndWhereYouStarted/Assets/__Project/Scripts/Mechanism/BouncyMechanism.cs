@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class BouncyMechnism : MonoBehaviour
+public class BouncyMechanism : MonoBehaviour
 {
     public float SpeedGain;
 

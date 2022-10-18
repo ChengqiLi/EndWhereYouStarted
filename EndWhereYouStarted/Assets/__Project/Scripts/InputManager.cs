@@ -28,6 +28,8 @@ public class InputManager : MonoBehaviour
         _playerInput.actions.FindAction("Fire").canceled += CancelFire;
         _playerInput.actions.FindAction("Exchange").performed += PerformExchange;
         _playerInput.actions.FindAction("Exchange").canceled += CancelExchange;
+        _playerInput.actions.FindAction("Replay").performed += PerformReplay;
+        _playerInput.actions.FindAction("Replay").canceled += CancelReplay;
         _playerInput.actions.FindAction("Item1").performed += LogName;
         _playerInput.actions.FindAction("Item2").performed += LogName;
         _playerInput.actions.FindAction("Item3").performed += LogName;
@@ -86,6 +88,10 @@ public class InputManager : MonoBehaviour
     public static bool _holdingExchange;
     private void PerformExchange(InputAction.CallbackContext context) => _holdingExchange = true;
     private void CancelExchange(InputAction.CallbackContext context) => _holdingExchange = false;
+
+    public static bool _holdingReplay;
+    private void PerformReplay(InputAction.CallbackContext context) => _holdingReplay = true;
+    private void CancelReplay(InputAction.CallbackContext context) => _holdingReplay = false;
 
     private void QuitApplication(InputAction.CallbackContext context)
     {

@@ -12,7 +12,7 @@ public class PlayerWeapon
 
     private GameObject _capture;
 
-    public void Update()
+    public void FixedUpdate()
     {
         Fire();
         Exchange();
@@ -24,7 +24,6 @@ public class PlayerWeapon
 
         _firedTime = Time.time;
         _exchangedTime = Time.time;
-
 
         Vector2 a = Player.Instance.FirePoint.position;
         Vector2 b = InputManager.MousePos;
@@ -53,5 +52,10 @@ public class PlayerWeapon
 
         Transform playerTransform = Player.Instance.transform;
         (playerTransform.position, _capture.transform.position) = (_capture.transform.position, playerTransform.position);
+    }
+
+    public void Disappear()
+    {
+        if(_capture != null) _capture.GetComponent<Bomb>().Disappear();
     }
 }

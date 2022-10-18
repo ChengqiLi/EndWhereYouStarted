@@ -11,7 +11,7 @@ public class Bomb : MonoBehaviour
     public GameObject ExplosionPrefab;
 
     public event Action<GameObject> ExplosionEvent;
-    private float _until;
+    private bool _disappear;
 
     private void Awake()
     {
@@ -22,9 +22,13 @@ public class Bomb : MonoBehaviour
 
     private void OnDestroy()
     {
-        // other.GetComponent<IDamageable>()?.GetHit(DamageAmount);
-        Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
+        if (!_disappear) Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
         ExplosionEvent?.Invoke(gameObject);
+    }
+
+    public void Disappear()
+    {
+        _disappear = true;
         Destroy(gameObject);
     }
 }

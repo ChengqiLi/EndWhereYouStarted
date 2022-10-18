@@ -28,7 +28,8 @@ public class Player : MonoBehaviour
     [NonSerialized] public Animator _anim;
 
     private MotionStateMachine _sm;
-    private PlayerWeapon _weapon;
+    public PlayerWeapon _weapon;
+    private PlayerTempSave _tempSave;
 
     private int _orient;
     public int Orient
@@ -88,6 +89,7 @@ public class Player : MonoBehaviour
 
         _sm = new MotionStateMachine();
         _weapon = new PlayerWeapon();
+        _tempSave = new PlayerTempSave();
 
         _orient = (int)transform.right.x;
         _resultsCache = new ContactPoint2D[20];
@@ -96,13 +98,14 @@ public class Player : MonoBehaviour
     private void Update()
     {
         _sm.Update();
-        _weapon.Update();
     }
 
     private void FixedUpdate()
     {
         _sm._grounded = CalcGrounded();
         _sm.FixedUpdate();
+        _weapon.FixedUpdate();
+        _tempSave.FixedUpdate();
     }
 
     private bool CalcGrounded()
@@ -113,5 +116,12 @@ public class Player : MonoBehaviour
             if (_resultsCache[i].normal.y > 0.9f) return true;
         }
         return false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        TempSavePoint tempSavePoint = collider.GetComponent<TempSavePoint>();
+        if (tempSavePoint == null) return;
+        _tempSave.Capture(tempSavePoint);
     }
 }
