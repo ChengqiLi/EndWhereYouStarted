@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainUI : MonoBehaviour
+public class MainUI : WindowRoot
 {
     public Button menuButton;
     public Button audioBtton;
@@ -11,14 +11,11 @@ public class MainUI : MonoBehaviour
     public SettingWnd settingWnd;
     private void Awake()
     {
-        menuButton = transform.Find("MenuButton").GetComponent<Button>();
         menuButton.onClick.AddListener(() =>
         {
             menuWnd.SetWndState(true);
         });
 
-
-        audioBtton = transform.Find("AudioBtton").GetComponent<Button>();
         audioBtton.onClick.AddListener(() =>
         {
             settingWnd.SetWndState(true);
