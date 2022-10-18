@@ -19,6 +19,7 @@ public class PlayerTempSave
         {
             Player.Instance._weapon.Disappear();
             Player.Instance.transform.position = _capture.transform.position;
+            Player.Instance.Velocity = Vector2.zero;
 
             var timers = GameObject.FindGameObjectsWithTag("TimerMechanism");
             for (int i = 0; i < timers.Length; i++)

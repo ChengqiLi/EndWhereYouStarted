@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     private MotionStateMachine _sm;
     public PlayerWeapon _weapon;
     private PlayerTempSave _tempSave;
+    private PlayerOneway _oneway;
 
     private int _orient;
     public int Orient
@@ -47,7 +48,23 @@ public class Player : MonoBehaviour
     public Vector2 Velocity
     {
         get => _rb.velocity;
-        set => _rb.velocity = value;
+        set
+        {
+            Oneway oneway = _oneway.GetCapture();
+            if(oneway == null)
+            {
+                _rb.velocity = value;
+                return;
+            }
+            else
+            {
+                Vector2 right = oneway.transform.right;
+                Vector2 up = oneway.transform.up;
+                float x = Mathf.Max(0.1f, Vector2.Dot(right, _rb.velocity));
+                float y = Vector2.Dot(up, _rb.velocity);
+                _rb.velocity = x * right + y * up;
+            }
+        }
     }
 
     public void SetVelocityX(float x)
@@ -90,6 +107,7 @@ public class Player : MonoBehaviour
         _sm = new MotionStateMachine();
         _weapon = new PlayerWeapon();
         _tempSave = new PlayerTempSave();
+        _oneway = new PlayerOneway();
 
         _orient = (int)transform.right.x;
         _resultsCache = new ContactPoint2D[20];
@@ -121,7 +139,15 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         TempSavePoint tempSavePoint = collider.GetComponent<TempSavePoint>();
-        if (tempSavePoint == null) return;
-        _tempSave.Capture(tempSavePoint);
+        if (tempSavePoint != null) _tempSave.Capture(tempSavePoint);
+
+        Oneway oneway = collider.GetComponent<Oneway>();
+        _oneway.Capture(oneway);
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        Oneway oneway = collider.GetComponent<Oneway>();
+        if(oneway != null) _oneway.Capture(null);
     }
 }

@@ -81,7 +81,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.6}
+  m_Size: {x: 0.8, y: 1.6}
   m_EdgeRadius: 0
 --- !u!114 &8483299041164065904
 MonoBehaviour:
@@ -97,7 +97,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 6612587091821494075, guid: 22f13db0bf9a4bc4b9b4cca57edc760a, type: 3}
   FirePoint: {fileID: 5397911001712731856}
-  _anim: {fileID: 0}
 --- !u!1 &3278455184155590311
 GameObject:
   m_ObjectHideFlags: 0

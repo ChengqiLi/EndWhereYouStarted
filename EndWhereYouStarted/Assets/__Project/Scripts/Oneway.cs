@@ -7,9 +7,10 @@ public class Oneway : MonoBehaviour
     {
         Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
         if (rb == null) return;
+        if (collider.GetComponent<Player>() != null) return;
 
-        float p = Mathf.Max(0, Vector2.Dot(transform.right, rb.velocity));
-        float q = Vector2.Dot(transform.up, rb.velocity);
-        rb.velocity = (p + 1) * transform.right + q * transform.up;
+        float x = Mathf.Max(0.1f, Vector2.Dot(transform.right, rb.velocity));
+        float y = Vector2.Dot(transform.up, rb.velocity);
+        rb.velocity = x * transform.right + y * transform.up;
     }
 }
